@@ -3,7 +3,6 @@ package cluster
 import akka.actor.{Actor, ActorLogging, Props}
 import akka.cluster.sharding.ShardRegion
 import cluster.EntityActor.{CacheData, GetCachedData}
-import io.circe.{Decoder, Encoder}
 
 class EntityActor extends Actor with ActorLogging {
   var data: Option[String] = None
@@ -21,7 +20,6 @@ class EntityActor extends Actor with ActorLogging {
 
 object EntityActor {
   private val numberOfShards = 100
-  import io.circe.generic.auto._
 
   val extractEntityId: ShardRegion.ExtractEntityId = {
     case msg@CacheData(id, _)  => (id.toString, msg)
@@ -36,9 +34,5 @@ object EntityActor {
   def props: Props = Props(new EntityActor)
   case class GetCachedData(id: String)
   case class CacheData(id: String, value: String)
-  object CacheData {
-    implicit val decoder: Decoder[CacheData] = exportDecoder[CacheData].instance
-    implicit val encoder: Encoder[CacheData] = exportEncoder[CacheData].instance
-  }
 
 }

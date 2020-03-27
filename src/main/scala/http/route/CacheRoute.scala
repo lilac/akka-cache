@@ -12,6 +12,8 @@ import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
 class CacheRoute(implicit actorSystem: ActorSystem) extends BaseRoute {
+  import io.circe.generic.auto._
+
   private val region = new RegionActor().region
   implicit val timeout: Timeout=  3.seconds
   override val route: Route = post {
