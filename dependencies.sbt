@@ -1,9 +1,9 @@
-val Akka = "2.5.11"
+val Akka = "2.6.4"
 val AkkaHttp = "10.1.0"
 val AkkaStream = "2.5.11"
 val Circe = "0.9.1"
 val CodahaleMetrics = "3.0.2"
-val AkkaManagement = "0.15.0"
+val AkkaManagement = "1.0.6"
 val AkkaHttpCirceVersion = "1.19.0"
 
 val circeDependencies = Seq(
@@ -29,7 +29,9 @@ libraryDependencies ++= Seq(
   "com.codahale.metrics" % "metrics-core" % CodahaleMetrics,
 
   "com.lightbend.akka.management" %% "akka-management-cluster-bootstrap" % AkkaManagement,
-  "com.lightbend.akka.discovery" %% "akka-discovery-dns" % AkkaManagement,
+//  "com.lightbend.akka.discovery" %% "akka-discovery-dns" % AkkaManagement,
+  "com.lightbend.akka.management" %% "akka-management" % AkkaManagement,
+  "com.typesafe.akka" %% "akka-discovery" % Akka,
 
   "de.heikoseeberger" %% "akka-http-circe" % AkkaHttpCirceVersion
 

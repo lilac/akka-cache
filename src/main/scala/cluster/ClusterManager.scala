@@ -1,7 +1,7 @@
 package cluster
 
 import akka.actor.{ActorRef, ActorSystem}
-import akka.management.AkkaManagement
+import akka.management.scaladsl.AkkaManagement
 import akka.management.cluster.bootstrap.ClusterBootstrap
 
 class ClusterManager(implicit actorSystem: ActorSystem) {

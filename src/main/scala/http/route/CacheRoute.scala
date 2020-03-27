@@ -17,7 +17,7 @@ class CacheRoute(implicit actorSystem: ActorSystem) extends BaseRoute {
   override val route: Route = post {
     path("cache") {
       entity(as[CacheData]) { cacheData =>
-        onComplete((region ? cacheData).mapTo[String]) {
+        onComplete((region ? cacheData).mapTo[Option[String]]) {
           case Success(s) => complete(s)
           case Failure(f) => complete(f)
         }
