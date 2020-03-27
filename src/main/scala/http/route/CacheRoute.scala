@@ -25,7 +25,7 @@ class CacheRoute(implicit actorSystem: ActorSystem) extends BaseRoute {
     }
   } ~ get {
     path("cache" / Segment) { id =>
-      onComplete((region ? GetCachedData(id)).mapTo[Option[String]]) {
+      onComplete((region ? GetCachedData(id)).mapTo[Option[CacheData]]) {
         case Success(s) => complete(s)
         case Failure(f) => complete(f)
       }
